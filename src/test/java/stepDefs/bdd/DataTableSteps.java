@@ -1,4 +1,4 @@
-package stepDefs;
+package stepDefs.bdd;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.After;
@@ -6,30 +6,26 @@ import io.cucumber.java.Before;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Given;
 import pages.Driver;
+import utils.PicoContainer;
 
 import java.util.List;
 import java.util.Map;
 
 public class DataTableSteps {
 
-    public void log(String message) {
+/*    public void log(String message) {
         System.out.println(message);
-    }
+    }*/
 
-    @Before
-    public void setUp() {
-        //System.out.println("\n **Before all steps..");
-        log("\n **Before scenario..");
-    }
+    PicoContainer picoContainer;
 
-    @After
-    public void tearDown() {
-        log("\n **After scenario..");
+    public DataTableSteps(PicoContainer picoContainer) {
+        this.picoContainer = picoContainer;
     }
 
     @Given("I have logged in to the application")
     public void i_have_logged_in_to_the_application() {
-        log("\n **Logged in..");
+        picoContainer.log.print("\n **Logged in..");
     }
 
     @Given("I create a policy")
@@ -41,8 +37,8 @@ public class DataTableSteps {
         // Double, Byte, Short, Long, BigInteger or BigDecimal.
         //
         // For other transformations you can register a DataTableType.
-        log("\n **I create a policy..");
-        log("Options: " + options);
+        picoContainer.log.print("\n **I create a policy..");
+        picoContainer.log.print("Options: " + options);
     }
 
     // Method 1: using List<Map<String, String>>
@@ -69,13 +65,13 @@ public class DataTableSteps {
         // Double, Byte, Short, Long, BigInteger or BigDecimal.
         //
         // For other transformations you can register a DataTableType.
-        log("\n **I create a driver..");
-        log("Options: " + table);
+        picoContainer.log.print("\n **I create a driver..");
+        picoContainer.log.print("Options: " + table);
 
         List<Map<String, String>> options = table.asMaps(String.class, String.class);
 
         for (Map<String, String> option : options) {
-            log(option.get("firstName"));
+            picoContainer.log.print(option.get("firstName"));
         }
     }
 
@@ -118,8 +114,8 @@ public class DataTableSteps {
         // Double, Byte, Short, Long, BigInteger or BigDecimal.
         //
         // For other transformations you can register a DataTableType.
-        log("\n **I create more policies..");
-        log("Options: " + options);
+        picoContainer.log.print("\n **I create more policies..");
+        picoContainer.log.print("Options: " + options);
 
 
     }

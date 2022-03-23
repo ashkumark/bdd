@@ -1,11 +1,11 @@
-@regression
+@policy
 Feature: Policy
   Story example
 
   Background:
     Given I have logged in to the application
 
-  @regression
+  @regression @smoke
   Scenario: Create policy
     Given I create a policy
       | Product |Multi |
